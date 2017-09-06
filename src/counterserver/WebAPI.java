@@ -27,7 +27,7 @@ public class WebAPI {
                 ArrayList<String> rawParts = new ArrayList();
                 rawParts.addAll(Arrays.asList(raw.split("\\{")));
                 rawParts.remove(0);
-                rawParts.remove(rawParts.size() - 1);
+                rawParts.set(rawParts.size() - 1,rawParts.get(rawParts.size() - 1).replace("]", ""));
                 rawParts.stream().forEach((s) -> {
                     HeroData h = new HeroData();
                     String[] objParts = s.split(",");
@@ -37,7 +37,6 @@ public class WebAPI {
                     h.setUrlSmallPortrait(objParts[3].split(": ")[1].replaceAll("u'|'|\"|u\"", "").trim());
                     h.setId(objParts[5].split(": ")[1].replaceAll("u'|'|\"|u\"", "").trim());
                     h.setUrlLargePortrait(objParts[6].split(": ")[1].replaceAll("u'|'|\"|u\"", "").trim());
-                    //System.out.println(h.getName());
                     h.setPrimaryAttribute(Scrapper.findPrimaryAttribute(h.getName().toLowerCase()));
                     hl.add(h);
                 });

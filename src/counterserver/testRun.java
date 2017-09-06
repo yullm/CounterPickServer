@@ -9,8 +9,11 @@ public class testRun {
     public static void main(String[] args){
         Gson gson = new Gson();
         ArrayList<HeroData> hl = WebAPI.GenerateHeroList();
+        for(HeroData h : hl){
+            System.out.println(h.getName());
+        }
         String jStr = gson.toJson(hl);
-        System.out.println(jStr.length());
+        //System.out.println(jStr.length());
 //        HeroData[] reSon = gson.fromJson(jStr, HeroData[].class);
 //        for(HeroData h : reSon){
 //            System.out.println(h.getName() + ", " + h.getPrimaryAttribute());
