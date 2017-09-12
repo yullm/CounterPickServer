@@ -8,7 +8,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import org.python.core.PyFunction;
 import org.python.core.PyString;
 import org.python.util.PythonInterpreter;
@@ -67,9 +69,6 @@ public class WebAPI {
                 FileInputStream fs = new FileInputStream(in);
                 ObjectInputStream os = new ObjectInputStream(fs);
                 hl = (ArrayList<HeroData>)os.readObject();
-            }
-            for(HeroData h : hl){
-                //System.out.println(h.getName() + ", " + h.getPrimaryAttribute());
             }
         }catch(Exception e){ System.out.println("Exception: " + e); }
         return hl;

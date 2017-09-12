@@ -14,8 +14,13 @@ public class Scrapper {
     
     public static ArrayList<HeroComparison> generateComparisonsFromHero(String parent){// parent represents the hero to be compared too!
         try{
+            int indexOfParent = 0;
+            for(HeroData h : CounterServer.heroes){
+                if(h.getName().equals(parent))
+                    indexOfParent = CounterServer.heroes.indexOf(h);
+            }
             UserAgent userAgent = new UserAgent();
-            userAgent.visit("https://www.dotabuff.com/heroes/"+parent+"/matchups");
+            userAgent.visit("https://www.dotabuff.com/heroes/"+parent.toLowerCase()+"/matchups");
             Element heroTable = userAgent.doc.findFirst("<div class=content-inner>").findFirst("<tbody>");
             Elements heroRows = heroTable.findEach("<tr>");
             ArrayList<HeroComparison> comparisons = new ArrayList();
@@ -29,6 +34,8 @@ public class Scrapper {
                 comparisons.add(h);
             }
             comparisons.sort(Comparator.comparing(HeroComparison::getHeroName));
+            HeroComparison self = new HeroComparison(parent,0,0,0);
+            comparisons.add(indexOfParent, self);
             return comparisons; // returns a list of heroes with stats in relation to the parent hero
         }
         catch(JauntException | NumberFormatException e){
