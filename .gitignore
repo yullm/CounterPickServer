@@ -34,8 +34,11 @@ $RECYCLE.BIN/
 # AppDetails
 **/AppDetails*
 
+# Jaunt
+jaunt*
+
 #nbproject
-nbproject/
+nbproject
 
 # Files that might appear in the root of a volume
 .DocumentRevisions-V100
@@ -51,3 +54,4 @@ nbproject/
 Network Trash Folder
 Temporary Items
 .apdisk
+nbproject/private/private.xml

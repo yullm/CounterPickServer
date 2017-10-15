@@ -18,7 +18,7 @@ public class Scrapper {
             for(HeroData h : CounterServer.heroes){
                 if(h.getName().equals(parent))
                     indexOfParent = CounterServer.heroes.indexOf(h);
-            }
+            }            
             UserAgent userAgent = new UserAgent();
             userAgent.visit("https://www.dotabuff.com/heroes/"+parent.toLowerCase()+"/matchups");
             Element heroTable = userAgent.doc.findFirst("<div class=content-inner>").findFirst("<tbody>");
